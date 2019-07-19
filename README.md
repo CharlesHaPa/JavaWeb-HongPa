@@ -2,8 +2,8 @@
 ## 实现功能
 管理员登陆、入住手续办理、更新旅客信息、查看当前酒店入住情况
 ## 技术框架
-自动化构建：Gradle
-项目管理：Maven
+自动化构建：Gradle  
+项目管理：Maven  
 前端框架：Bootstrap   
 前端逻辑框架：AngularJS、jQuery  
 后端框架：Spring  
