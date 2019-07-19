@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <script>
+    function check() {
+      var name = document.getElementById("user").value;
+      var pass = document.getElementById("pwd").value;
+      if (name == "cez" && pass == "1408") {
+        alert("登入成功");
+        window.document.f.action = "room-table.html";
+        window.document.f.submit();
+      } else if (name != "user") {
+        alert("用户名错误。");
+      } else if (pass != "123") {
+        alert("密码错误。");
+      }
+    }
+  </script>
+
+  <title>登录</title>
+  <style>
+    body {
+      overflow: hidden;
+    }
+
+    div.container {
+      width: 100em;
+      border: 1.5em solid #ffffcc;
+    }
+
+    img {
+      height: 450px;
+      width: 600px;
+      float: left;
+      margin: 45px 0 0 145px;
+    }
+
+    div.right {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box; /* Firefox */
+      width: 30em;
+      height: 30em;
+      float: right;
+    }
+
+    div.form-horizontal {
+      padding-top: 100px;
+    }
+
+    div.form-signin {
+      max-width: 300px;
+      padding: 19px 29px 29px 29px;;
+      margin: 0 auto 20px auto;
+      background-color: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 5px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    }
+
+    form {
+      position: relative;
+      top: 130px;
+    }
+
+    h2 {
+      font-size: 31.5px;
+      position: relative;
+      left: 88px;
+    }
+
+    div.form-signin.form-signin-heading {
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 20px;
+      letter-spacing: 5px;
+    }
+
+    div.input-block-level {
+      display: block;
+      width: 100%;
+      min-height: 30px;
+      box-sizing: border-box;
+    }
+
+    div.checkbox {
+      min-height: 20px;
+      padding-left: 20px;
+    }
+
+    button {
+      position: relative;
+      left: 220px;
+      font-size: 17.5px;
+      border-radius: 5px;
+      color: #fffff;
+      text-shadow: 0 -1px 0 raba(0, 0, 0, 0.25);
+      background-color: #ccffff;
+      margin-bottom: 0;
+      width: 60px;
+      border-color: rgba(0, 0, 0, 0.1);
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+<!--login form-->
+<div class="container">
+</div>
+
+<img src="assets/images/room.jpg">
+
+<div class="right">
+  <form class="form-signin" name="f" method="post" action="">
+    <h2 class="form-signin-heading">登录</h2>
+    <p>账号<input type="text" name="user" id="user" class="input-block-level"
+                style="width:200px; height:30px;border-radius:3px;" placeholder="text">
+    </p>
+    <p>密码<input type="password" name="pwd" id="pwd" class="input-block-level"
+                style="width:200px; height:30px;border-radius:3px;" placeholder="password">
+    </p>
+    <label class="checkbox">
+      <input type="checkbox" value="remember-me">
+      <small>记住我
+        <small>
+    </label>
+    <br>
+    <button type="submit" onclick="check()">登录</button>
+  </form>
+</div>
+
+</body>
+</html>

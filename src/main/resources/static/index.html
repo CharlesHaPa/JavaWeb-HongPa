@@ -1,0 +1,126 @@
+<!doctype html>
+<html ng-app="room_table">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <title>HongPa Apartment</title>
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <style type="text/css">
+    .list-group-item {
+      position: relative;
+      display: block;
+      padding: 10px 15px;
+      margin-top: 10px;
+      margin-bottom: -1px;
+      background-color: #FFFCEC;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body ng-controller="RoomTableController as roomt">
+<div class="page-header">
+  <h1 style="margin: 1%"> HongPa Apartment
+    <small> Management System</small>
+  </h1>
+</div>
+<div class="row" id="mainContent">
+  <div class="col-sm-2 text-center" id="leftMenu">
+    <h2>Menu</h2>
+    <div class="panel-group" id="accordion">
+      <div>
+        <ul class="list-group nav nav-pills nav-stacked">
+          <li class="list-group-item"><a href="index.html">List Of Rooms</a></li>
+          <li class="list-group-item" style="margin-top:15px"><a href="updateClient.html">Update Client</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6" style="margin-top:50px;margin-left:100px">
+
+    <form class="form-inline" role="form" name="room_table" id="room_table" method="post" action="Order.jsp">
+
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" class="form-control" ng-model="date"
+               min="{{minDate | date:'yyyy-MM-dd'}}" max="{{nextMonth | date:'yyyy-MM-dd'}}">
+        <button ng-click="listRooms()" type="submit" onclick="return false;" class="btn btn-info"
+                ng-disabled="!room_table.date.$valid">
+          <span class="glyphicon glyphicon-search"></span></button>
+      </div>
+
+
+      <div class="col-sm-12" style="padding-top:20px">
+
+
+        <div class="btn-group btn-group-lg" ng-repeat="room in roomsInADay">
+
+          <button style="margin-left:40px;margin-top:40px" id="room_button" ng-class="room.style"
+                  type="submit" onclick="return false;"
+                  ng-click="getCustomerInfo(room.style,room.id)">{{room.id}}
+          </button>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-sm-offset-7" style="margin-top:70px">
+        <button class="btn btn-info btn-default" id="reserve" ng-show="reserve_button"
+                ng-click="addPara1()" style="margin-left:15px">Reserve
+        </button>
+        <button class="btn btn-info btn-default" id="order" ng-show="order_button && showOrderButton"
+                ng-click="addPara2()" style="margin-left:15px">Order
+        </button>
+        <button class="btn btn-info btn-default" id="cancel_order" ng-show="cancel_order"
+                ng-click="cancelOrder()" type="submit" onclick="return false;" style="margin-left:15px">Check out
+        </button>
+        <button class="btn btn-info btn-default" id="ccancel_reserve" ng-show="cancel_reserve"
+                ng-click="cancelReserve()" type="submit" onclick="return false;" style="margin-left:15px">Cancel Reserve
+        </button>
+      </div>
+
+      <input type="hidden" name="room_id" id="room_id" ng-value="room_id"/>
+      <input type="hidden" name="order_status" id="order_status" ng-value="order_status"/>
+      <input type="hidden" name="button_status" id="button_status" ng-value="button_status"/>
+      <input type="hidden" name="user_name" id="user_name" ng-value="user_name"/>
+      <input type="hidden" name="user_gender" id="user_gender" ng-value="user_gender"/>
+      <input type="hidden" name="user_phone" id="user_phone" ng-value="user_phone"/>
+      <input type="hidden" name="user_idNum" id="user_idNum" ng-value="user_idNum"/>
+      <input type="hidden" name="reserve_id" id="reserve_id" ng-value="reserve_id"/>
+
+    </form>
+  </div>
+
+  <div class="clo-sm-3 col-sm-offset-9" style="margin-top:150px">
+    <h4><b>States of Apartments</b></h4>
+    <button class="btn btn-danger " style="margin-top:50px">Reserved</button>
+    <br><br>
+    <button class="btn btn-free ">Ordered</button>
+    <br><br>
+    <button class="btn btn-success ">Free</button>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="returnModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">The result of your operation：</h4>
+        </div>
+        <div class="modal-body">
+          {{return_status}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/angular.min.js"></script>
+<script src="room_table.js"></script>
+
+</body>
+</html>
